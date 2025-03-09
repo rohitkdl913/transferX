@@ -26,15 +26,13 @@ jobs:
 
     - name: Run tests
       run: cargo test --verbose
-  release:
-    needs: build
-    runs-on: ubuntu-latest
-    if: needs.build.result =='success'
 
-    steps:
-    - uses: actions/checkout@v4
-     - name: Upload artifacts
-        uses: actions/upload-artifact@v4
-        with:
-          name: transferx-${{ matrix.os }}
-          path: target/release/transferx
+    - name: Upload artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: transferx-${{ matrix.os }}
+        path: |
+          target/release/transferx
+          target/release/transferx.exe
+
+  
